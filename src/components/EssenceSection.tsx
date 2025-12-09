@@ -2,6 +2,37 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Palette, Diamond, Hammer, Shield } from "lucide-react";
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 50, filter: "blur(8px)" },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    filter: "blur(0px)",
+    transition: { duration: 0.7 }
+  }
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1
+    }
+  }
+};
+
+const headerVariants = {
+  hidden: { opacity: 0, y: 40, filter: "blur(6px)" },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    filter: "blur(0px)",
+    transition: { duration: 0.8 }
+  }
+};
+
 const pillars = [
   {
     icon: Palette,
@@ -30,15 +61,9 @@ const pillars = [
 ];
 
 function PillarCard({ pillar, index }: { pillar: typeof pillars[0]; index: number }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
-
   return (
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-      transition={{ duration: 0.6, delay: index * 0.15 }}
+      variants={cardVariants}
       className="group text-center md:text-left"
     >
       <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
@@ -71,9 +96,9 @@ export function EssenceSection() {
         {/* Header */}
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{ duration: 0.8 }}
+          variants={headerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
           className="text-center mb-16 md:mb-24"
         >
           <div className="section-divider mb-8" />
@@ -86,11 +111,17 @@ export function EssenceSection() {
         </motion.div>
 
         {/* Pillars Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 max-w-4xl mx-auto">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 max-w-4xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {pillars.map((pillar, index) => (
             <PillarCard key={pillar.title} pillar={pillar} index={index} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -20,10 +20,10 @@ export function HeroSection() {
         <img
           src={heroImage}
           alt="Cozinha de luxo Krion Marcenaria"
-          className="w-full h-[120%] object-cover brightness-[0.7]"
+          className="w-full h-[120%] object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/50 to-background" />
-        <div className="absolute inset-0 bg-background/20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/40 to-background" />
+        <div className="absolute inset-0 bg-background/10" />
       </motion.div>
 
       {/* Content */}

@@ -1,6 +1,39 @@
-import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useState, useRef } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+
+const testimonialVariants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? 60 : -60,
+    opacity: 0,
+    scale: 0.95,
+    filter: "blur(4px)"
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: { duration: 0.5 }
+  },
+  exit: (direction: number) => ({
+    x: direction < 0 ? 60 : -60,
+    opacity: 0,
+    scale: 0.95,
+    filter: "blur(4px)",
+    transition: { duration: 0.4 }
+  })
+};
+
+const headerVariants = {
+  hidden: { opacity: 0, y: 40, filter: "blur(6px)" },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    filter: "blur(0px)",
+    transition: { duration: 0.8 }
+  }
+};
 
 const testimonials = [
   {
@@ -27,16 +60,18 @@ const testimonials = [
 ];
 
 export function TestimonialsSection() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [[currentIndex, direction], setCurrentIndex] = useState([0, 0]);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const next = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  const paginate = (newDirection: number) => {
+    const newIndex = (currentIndex + newDirection + testimonials.length) % testimonials.length;
+    setCurrentIndex([newIndex, newDirection]);
   };
 
-  const prev = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  const goToIndex = (index: number) => {
+    const direction = index > currentIndex ? 1 : -1;
+    setCurrentIndex([index, direction]);
   };
 
   return (
@@ -45,9 +80,9 @@ export function TestimonialsSection() {
         {/* Header */}
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{ duration: 0.8 }}
+          variants={headerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
           className="text-center mb-16 md:mb-24"
         >
           <div className="section-divider mb-8" />
@@ -58,66 +93,73 @@ export function TestimonialsSection() {
 
         {/* Testimonial Carousel */}
         <div className="max-w-4xl mx-auto relative">
-          <motion.div
-            key={currentIndex}
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.5 }}
-            className="text-center"
-          >
-            {/* Quote Icon */}
-            <Quote className="w-12 h-12 text-primary/30 mx-auto mb-8" />
-            
-            {/* Content */}
-            <p className="text-xl md:text-2xl text-cream font-light leading-relaxed mb-10 italic">
-              "{testimonials[currentIndex].content}"
-            </p>
-            
-            {/* Author */}
-            <div>
-              <p className="text-lg font-serif text-primary">
-                {testimonials[currentIndex].name}
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              key={currentIndex}
+              custom={direction}
+              variants={testimonialVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              className="text-center"
+            >
+              {/* Quote Icon */}
+              <Quote className="w-12 h-12 text-primary/30 mx-auto mb-8" />
+              
+              {/* Content */}
+              <p className="text-xl md:text-2xl text-cream font-light leading-relaxed mb-10 italic">
+                "{testimonials[currentIndex].content}"
               </p>
-              <p className="text-sm text-cream-muted uppercase tracking-widest mt-1">
-                {testimonials[currentIndex].role}
-              </p>
-            </div>
-          </motion.div>
+              
+              {/* Author */}
+              <div>
+                <p className="text-lg font-serif text-primary">
+                  {testimonials[currentIndex].name}
+                </p>
+                <p className="text-sm text-cream-muted uppercase tracking-widest mt-1">
+                  {testimonials[currentIndex].role}
+                </p>
+              </div>
+            </motion.div>
+          </AnimatePresence>
 
           {/* Navigation */}
           <div className="flex items-center justify-center gap-6 mt-12">
-            <button
-              onClick={prev}
+            <motion.button
+              onClick={() => paginate(-1)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               className="p-3 border border-border hover:border-primary hover:text-primary transition-colors duration-300"
               aria-label="Anterior"
             >
               <ChevronLeft className="w-5 h-5" />
-            </button>
+            </motion.button>
             
             {/* Dots */}
             <div className="flex gap-2">
               {testimonials.map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => setCurrentIndex(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  onClick={() => goToIndex(index)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
                     index === currentIndex
                       ? "bg-primary w-8"
-                      : "bg-cream-muted/30 hover:bg-cream-muted/50"
+                      : "bg-cream-muted/30 hover:bg-cream-muted/50 w-2"
                   }`}
                   aria-label={`Ir para depoimento ${index + 1}`}
                 />
               ))}
             </div>
             
-            <button
-              onClick={next}
+            <motion.button
+              onClick={() => paginate(1)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               className="p-3 border border-border hover:border-primary hover:text-primary transition-colors duration-300"
               aria-label="Próximo"
             >
               <ChevronRight className="w-5 h-5" />
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>

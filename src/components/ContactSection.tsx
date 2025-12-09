@@ -2,6 +2,56 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { MapPin, Phone, Mail, MessageCircle, Send } from "lucide-react";
 
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 40, filter: "blur(6px)" },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    filter: "blur(0px)",
+    transition: { duration: 0.7 }
+  }
+};
+
+const slideLeftVariants = {
+  hidden: { opacity: 0, x: -50, filter: "blur(6px)" },
+  visible: { 
+    opacity: 1, 
+    x: 0, 
+    filter: "blur(0px)",
+    transition: { duration: 0.8, delay: 0.2 }
+  }
+};
+
+const slideRightVariants = {
+  hidden: { opacity: 0, x: 50, filter: "blur(6px)" },
+  visible: { 
+    opacity: 1, 
+    x: 0, 
+    filter: "blur(0px)",
+    transition: { duration: 0.8, delay: 0.3 }
+  }
+};
+
+const formFieldVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { duration: 0.4 }
+  }
+};
+
+const formContainerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.4
+    }
+  }
+};
+
 export function ContactSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -41,9 +91,9 @@ export function ContactSection() {
         {/* Header */}
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{ duration: 0.8 }}
+          variants={fadeUpVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
           className="text-center mb-16 md:mb-24"
         >
           <div className="section-divider mb-8" />
@@ -59,9 +109,9 @@ export function ContactSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 max-w-6xl mx-auto">
           {/* Left Column - Info & Map */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            variants={slideLeftVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
             className="space-y-8"
           >
             <div>
@@ -71,15 +121,17 @@ export function ContactSection() {
               </p>
               
               {/* WhatsApp CTA */}
-              <a
+              <motion.a
                 href="https://wa.me/5519994704048?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20projetos%20da%20Krion%20Marcenaria."
                 target="_blank"
                 rel="noopener noreferrer"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-gold text-primary-foreground font-medium transition-all duration-300 hover:shadow-[0_8px_30px_hsl(var(--gold)/0.3)] mb-10"
               >
                 <MessageCircle className="w-5 h-5" />
                 Falar com um Especialista via WhatsApp
-              </a>
+              </motion.a>
             </div>
 
             {/* Contact Info */}
@@ -128,12 +180,19 @@ export function ContactSection() {
 
           {/* Right Column - Form */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            variants={slideRightVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
+            <motion.form 
+              onSubmit={handleSubmit} 
+              className="space-y-6"
+              variants={formContainerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              <motion.div variants={formFieldVariants}>
                 <label htmlFor="name" className="block text-sm text-cream-muted mb-2">
                   Nome Completo
                 </label>
@@ -147,9 +206,9 @@ export function ContactSection() {
                   className="w-full px-4 py-3 bg-charcoal-light border border-border text-cream placeholder:text-muted-foreground focus:border-primary focus:outline-none transition-colors"
                   placeholder="Seu nome"
                 />
-              </div>
+              </motion.div>
               
-              <div>
+              <motion.div variants={formFieldVariants}>
                 <label htmlFor="email" className="block text-sm text-cream-muted mb-2">
                   Email
                 </label>
@@ -163,9 +222,9 @@ export function ContactSection() {
                   className="w-full px-4 py-3 bg-charcoal-light border border-border text-cream placeholder:text-muted-foreground focus:border-primary focus:outline-none transition-colors"
                   placeholder="seu@email.com"
                 />
-              </div>
+              </motion.div>
               
-              <div>
+              <motion.div variants={formFieldVariants}>
                 <label htmlFor="phone" className="block text-sm text-cream-muted mb-2">
                   Telefone / WhatsApp
                 </label>
@@ -179,9 +238,9 @@ export function ContactSection() {
                   className="w-full px-4 py-3 bg-charcoal-light border border-border text-cream placeholder:text-muted-foreground focus:border-primary focus:outline-none transition-colors"
                   placeholder="(00) 00000-0000"
                 />
-              </div>
+              </motion.div>
               
-              <div>
+              <motion.div variants={formFieldVariants}>
                 <label htmlFor="message" className="block text-sm text-cream-muted mb-2">
                   Detalhes do Projeto
                 </label>
@@ -195,16 +254,19 @@ export function ContactSection() {
                   className="w-full px-4 py-3 bg-charcoal-light border border-border text-cream placeholder:text-muted-foreground focus:border-primary focus:outline-none transition-colors resize-none"
                   placeholder="Conte-nos sobre seu projeto..."
                 />
-              </div>
+              </motion.div>
               
-              <button
+              <motion.button
                 type="submit"
+                variants={formFieldVariants}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 className="w-full flex items-center justify-center gap-3 px-8 py-4 border border-primary text-primary font-medium hover:bg-primary hover:text-primary-foreground transition-all duration-300"
               >
                 <Send className="w-4 h-4" />
                 Enviar Solicitação de Projeto
-              </button>
-            </form>
+              </motion.button>
+            </motion.form>
           </motion.div>
         </div>
       </div>
