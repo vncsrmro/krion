@@ -20,9 +20,10 @@ export function HeroSection() {
         <img
           src={heroImage}
           alt="Cozinha de luxo Krion Marcenaria"
-          className="w-full h-[120%] object-cover"
+          className="w-full h-[120%] object-cover brightness-[0.7]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/30 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/50 to-background" />
+        <div className="absolute inset-0 bg-background/20" />
       </motion.div>
 
       {/* Content */}
@@ -74,19 +75,27 @@ export function HeroSection() {
       </motion.div>
 
       {/* Scroll Indicator */}
-      <motion.div
+      <motion.button
+        onClick={() => {
+          const nextSection = document.getElementById('sobre');
+          if (nextSection) {
+            nextSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        whileHover={{ scale: 1.1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer"
+        aria-label="Rolar para próxima seção"
       >
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
           <ChevronDown className="w-8 h-8 text-primary" />
         </motion.div>
-      </motion.div>
+      </motion.button>
     </section>
   );
 }

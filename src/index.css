@@ -166,17 +166,17 @@
     @apply shadow-[0_20px_60px_hsl(var(--gold)/0.1)] -translate-y-1;
   }
 
-  /* Pulse animation for WhatsApp button */
+  /* Elegant pulse animation for WhatsApp button */
   .pulse-gold {
-    animation: pulseGold 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    animation: pulseGold 4s ease-in-out infinite;
   }
 
   @keyframes pulseGold {
     0%, 100% {
-      box-shadow: 0 0 0 0 hsl(var(--gold) / 0.4);
+      box-shadow: 0 4px 20px hsl(var(--gold) / 0.3);
     }
     50% {
-      box-shadow: 0 0 0 12px hsl(var(--gold) / 0);
+      box-shadow: 0 4px 35px hsl(var(--gold) / 0.5), 0 0 0 8px hsl(var(--gold) / 0.1);
     }
   }
 
