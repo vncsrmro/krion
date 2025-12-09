@@ -28,8 +28,8 @@ export function AboutSection() {
                 </div>
                 <div className="aspect-square bg-charcoal-light overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=400&h=400&fit=crop"
-                    alt="Detalhe de marcenaria fina"
+                    src="https://images.unsplash.com/photo-1572297794908-f2ee5a2930d9?w=400&h=400&fit=crop"
+                    alt="Marceneiro trabalhando com madeira"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
@@ -37,15 +37,15 @@ export function AboutSection() {
               <div className="pt-8 space-y-4">
                 <div className="aspect-square bg-charcoal-light overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=400&h=400&fit=crop"
-                    alt="Oficina de marcenaria"
+                    src="https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&h=400&fit=crop"
+                    alt="Ferramentas de marcenaria"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
                 <div className="aspect-[3/4] bg-charcoal-light overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1618221118493-9cfa1a1c00da?w=600&h=800&fit=crop"
-                    alt="Ambiente com móveis planejados"
+                    src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=600&h=800&fit=crop"
+                    alt="Móvel de madeira artesanal"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>

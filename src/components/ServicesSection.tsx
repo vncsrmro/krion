@@ -75,8 +75,8 @@ export function ServicesSection() {
           >
             <div className="aspect-[4/3] overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=800&h=600&fit=crop"
-                alt="Maquinário CNC de alta precisão"
+                src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=800&h=600&fit=crop"
+                alt="Oficina de marcenaria com ferramentas profissionais"
                 className="w-full h-full object-cover"
               />
             </div>

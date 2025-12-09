@@ -19,7 +19,6 @@ export interface Project {
     environment: string;
     finishes: string[];
   };
-  size: "large" | "tall" | "medium";
 }
 
 export const projects: Project[] = [
@@ -37,7 +36,6 @@ export const projects: Project[] = [
       environment: "Residencial - Alto Padrão",
       finishes: ["Verniz Acetinado", "Laca Branca Fosca", "Iluminação LED"]
     },
-    size: "large",
   },
   {
     slug: "closet-master",
@@ -53,7 +51,6 @@ export const projects: Project[] = [
       environment: "Residencial - Suíte Master",
       finishes: ["Lâmina Natural", "Pintura Metalizada", "Tecido Suede interno"]
     },
-    size: "tall",
   },
   {
     slug: "home-theater",
@@ -69,7 +66,6 @@ export const projects: Project[] = [
       environment: "Residencial - Entretenimento",
       finishes: ["Laca Fosca Preta", "Ripado de Madeira", "Fibra Acústica"]
     },
-    size: "medium",
   },
   {
     slug: "banheiro-premium",
@@ -85,7 +81,6 @@ export const projects: Project[] = [
       environment: "Residencial - Suíte",
       finishes: ["Verniz Naval", "Polimento Brilhante", "Rejunte Epóxi"]
     },
-    size: "medium",
   },
   {
     slug: "sala-de-estar",
@@ -101,7 +96,6 @@ export const projects: Project[] = [
       environment: "Residencial - Área Social",
       finishes: ["Óleo Natural", "Vidro Acidato", "Pintura Eletrostática"]
     },
-    size: "medium",
   },
   {
     slug: "home-office",
@@ -117,7 +111,6 @@ export const projects: Project[] = [
       environment: "Residencial - Home Office",
       finishes: ["Laca Acetinada", "Puxadores Couro", "Passa-cabos embutidos"]
     },
-    size: "tall",
   },
 ];
 
