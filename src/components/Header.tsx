@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import krionLogo from "@/assets/krion-logo.svg";
 
 const navLinks = [
@@ -15,6 +16,8 @@ const navLinks = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,27 +41,26 @@ export function Header() {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="#inicio" className="relative z-10">
+          <Link to="/" className="relative z-10">
             <img
               src={krionLogo}
               alt="Krion Marcenaria"
               className="h-10 md:h-12 w-auto"
             />
-          </a>
+          </Link>
 
-          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.href}
-                href={link.href}
+                href={isHomePage ? link.href : `/${link.href}`}
                 className="text-sm font-medium tracking-wide text-cream-muted hover:text-primary transition-colors duration-300 link-underline"
               >
                 {link.label}
               </a>
             ))}
             <a
-              href="#contato"
+              href={isHomePage ? "#contato" : "/#contato"}
               className="ml-4 px-6 py-2.5 border border-primary text-primary text-sm font-medium tracking-wide hover:bg-primary hover:text-primary-foreground transition-all duration-300"
             >
               Solicitar Projeto
@@ -90,7 +92,7 @@ export function Header() {
               {navLinks.map((link, index) => (
                 <motion.a
                   key={link.href}
-                  href={link.href}
+                  href={isHomePage ? link.href : `/${link.href}`}
                   onClick={() => setIsMobileMenuOpen(false)}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -101,7 +103,7 @@ export function Header() {
                 </motion.a>
               ))}
               <motion.a
-                href="#contato"
+                href={isHomePage ? "#contato" : "/#contato"}
                 onClick={() => setIsMobileMenuOpen(false)}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
