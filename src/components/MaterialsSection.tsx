@@ -86,7 +86,7 @@ export function MaterialsSection() {
           >
             <div className="aspect-[3/4] overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=600&h=800&fit=crop"
+                src="https://images.unsplash.com/photo-1541123603104-512919d6a96c?w=600&h=800&fit=crop"
                 alt="Amostras de madeiras nobres e acabamentos"
                 className="w-full h-full object-cover"
               />
