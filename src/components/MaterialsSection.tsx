@@ -1,6 +1,7 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Leaf, Award, Shield } from "lucide-react";
+import woodSamples from "@/assets/wood-samples.jpg";
 
 const materials = [
   {
@@ -86,7 +87,7 @@ export function MaterialsSection() {
           >
             <div className="aspect-[3/4] overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1541123603104-512919d6a96c?w=600&h=800&fit=crop"
+                src={woodSamples}
                 alt="Amostras de madeiras nobres e acabamentos"
                 className="w-full h-full object-cover"
               />

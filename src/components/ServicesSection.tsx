@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Cog, Target, HandMetal, Building2, Home } from "lucide-react";
+import workshopCnc from "@/assets/workshop-cnc.jpg";
 
 const techFeatures = [
   {
@@ -75,8 +76,8 @@ export function ServicesSection() {
           >
             <div className="aspect-[4/3] overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=800&h=600&fit=crop"
-                alt="Oficina de marcenaria com ferramentas profissionais"
+                src={workshopCnc}
+                alt="Oficina de marcenaria com maquinário CNC"
                 className="w-full h-full object-cover"
               />
             </div>
