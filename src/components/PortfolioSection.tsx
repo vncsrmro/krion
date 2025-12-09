@@ -4,6 +4,27 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { projects } from "@/data/projects";
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 60, filter: "blur(8px)" },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    filter: "blur(0px)",
+    transition: { duration: 0.7 }
+  }
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.15
+    }
+  }
+};
+
 function PortfolioCard({ project, index }: { project: typeof projects[0]; index: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });

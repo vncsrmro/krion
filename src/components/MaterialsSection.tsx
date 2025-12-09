@@ -3,6 +3,37 @@ import { useRef } from "react";
 import { Leaf, Award, Shield } from "lucide-react";
 import woodSamples from "@/assets/wood-samples.jpg";
 
+const slideLeftVariants = {
+  hidden: { opacity: 0, x: -60, filter: "blur(8px)" },
+  visible: { 
+    opacity: 1, 
+    x: 0, 
+    filter: "blur(0px)",
+    transition: { duration: 0.8 }
+  }
+};
+
+const materialVariants = {
+  hidden: { opacity: 0, y: 25, filter: "blur(4px)" },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    filter: "blur(0px)",
+    transition: { duration: 0.5 }
+  }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.3
+    }
+  }
+};
+
 const materials = [
   {
     icon: Leaf,

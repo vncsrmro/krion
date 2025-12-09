@@ -2,6 +2,27 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { MessageSquare, PenTool, CheckCircle, Hammer, Sparkles, Truck } from "lucide-react";
 
+const stepVariants = {
+  hidden: { opacity: 0, y: 50, filter: "blur(6px)" },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    filter: "blur(0px)",
+    transition: { duration: 0.6 }
+  }
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.15
+    }
+  }
+};
+
 const steps = [
   {
     number: "01",

@@ -1,9 +1,50 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import craftsmanWorking from "@/assets/craftsman-working.jpg";
-import carpentryTools from "@/assets/carpentry-tools.jpg";
 import woodJoinery from "@/assets/wood-joinery.jpg";
+import carpentryTools from "@/assets/carpentry-tools.jpg";
 import customFurniture from "@/assets/custom-furniture.jpg";
+
+const slideLeftVariants = {
+  hidden: { opacity: 0, x: -60, filter: "blur(8px)" },
+  visible: { 
+    opacity: 1, 
+    x: 0, 
+    filter: "blur(0px)",
+    transition: { duration: 0.8 }
+  }
+};
+
+const slideRightVariants = {
+  hidden: { opacity: 0, x: 60, filter: "blur(8px)" },
+  visible: { 
+    opacity: 1, 
+    x: 0, 
+    filter: "blur(0px)",
+    transition: { duration: 0.8, delay: 0.2 }
+  }
+};
+
+const statVariant = {
+  hidden: { opacity: 0, y: 30, scale: 0.9 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1,
+    transition: { duration: 0.5 }
+  }
+};
+
+const staggerStats = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.4
+    }
+  }
+};
 
 export function AboutSection() {
   const ref = useRef(null);
@@ -16,9 +57,9 @@ export function AboutSection() {
           {/* Image Grid */}
           <motion.div
             ref={ref}
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-            transition={{ duration: 0.8 }}
+            variants={slideLeftVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
             className="relative"
           >
             <div className="grid grid-cols-2 gap-4">
@@ -62,9 +103,9 @@ export function AboutSection() {
 
           {/* Content */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            variants={slideRightVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
           >
             <div className="section-divider mb-8" />
             <h2 className="text-3xl md:text-5xl font-serif text-cream mb-6">
@@ -86,7 +127,12 @@ export function AboutSection() {
             </p>
 
             {/* Quote */}
-            <div className="border-l-2 border-primary pl-6 py-2">
+            <motion.div 
+              className="border-l-2 border-primary pl-6 py-2"
+              initial={{ opacity: 0, x: 20 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
               <blockquote className="text-lg md:text-xl font-serif text-cream italic">
                 "Transformamos madeira em móveis que unem função e sofisticação,
                 criando ambientes que contam histórias."
@@ -94,23 +140,28 @@ export function AboutSection() {
               <cite className="text-primary text-sm mt-3 block not-italic">
                 — Filosofia Krion
               </cite>
-            </div>
+            </motion.div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 mt-10 pt-10 border-t border-cream/10">
-              <div>
+            <motion.div 
+              className="grid grid-cols-3 gap-6 mt-10 pt-10 border-t border-cream/10"
+              variants={staggerStats}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+            >
+              <motion.div variants={statVariant}>
                 <span className="text-3xl md:text-4xl font-serif text-primary">20+</span>
                 <span className="text-cream-muted text-sm block mt-1">Anos de Experiência</span>
-              </div>
-              <div>
+              </motion.div>
+              <motion.div variants={statVariant}>
                 <span className="text-3xl md:text-4xl font-serif text-primary">500+</span>
                 <span className="text-cream-muted text-sm block mt-1">Projetos Entregues</span>
-              </div>
-              <div>
+              </motion.div>
+              <motion.div variants={statVariant}>
                 <span className="text-3xl md:text-4xl font-serif text-primary">100%</span>
                 <span className="text-cream-muted text-sm block mt-1">Clientes Satisfeitos</span>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
