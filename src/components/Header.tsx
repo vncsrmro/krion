@@ -5,9 +5,10 @@ import krionLogo from "@/assets/krion-logo.svg";
 
 const navLinks = [
   { label: "Início", href: "#inicio" },
+  { label: "Sobre", href: "#sobre" },
+  { label: "Serviços", href: "#servicos" },
   { label: "Portfólio", href: "#portfolio" },
-  { label: "Nossa Essência", href: "#essencia" },
-  { label: "Depoimentos", href: "#depoimentos" },
+  { label: "Processos", href: "#processos" },
   { label: "Contato", href: "#contato" },
 ];
 

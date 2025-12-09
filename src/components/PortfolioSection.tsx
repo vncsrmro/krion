@@ -1,98 +1,61 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import portfolioCloset from "@/assets/portfolio-closet.jpg";
-import portfolioHometheater from "@/assets/portfolio-hometheater.jpg";
-import portfolioBathroom from "@/assets/portfolio-bathroom.jpg";
-import portfolioLiving from "@/assets/portfolio-living.jpg";
-import portfolioOffice from "@/assets/portfolio-office.jpg";
-import heroKitchen from "@/assets/hero-kitchen.jpg";
-
-const projects = [
-  {
-    title: "Cozinha Gourmet",
-    category: "Cozinhas",
-    image: heroKitchen,
-    size: "large",
-  },
-  {
-    title: "Closet Master",
-    category: "Closets",
-    image: portfolioCloset,
-    size: "tall",
-  },
-  {
-    title: "Home Theater",
-    category: "Entretenimento",
-    image: portfolioHometheater,
-    size: "medium",
-  },
-  {
-    title: "Banheiro Premium",
-    category: "Banheiros",
-    image: portfolioBathroom,
-    size: "medium",
-  },
-  {
-    title: "Sala de Estar",
-    category: "Salas",
-    image: portfolioLiving,
-    size: "medium",
-  },
-  {
-    title: "Home Office",
-    category: "Escritórios",
-    image: portfolioOffice,
-    size: "tall",
-  },
-];
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import { projects } from "@/data/projects";
 
 function PortfolioCard({ project, index }: { project: typeof projects[0]; index: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className={`group relative overflow-hidden cursor-pointer ${
-        project.size === "large"
-          ? "md:col-span-2 md:row-span-2"
-          : project.size === "tall"
-          ? "md:row-span-2"
-          : ""
-      }`}
-    >
-      <div className="relative h-full min-h-[300px] md:min-h-[400px] overflow-hidden">
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-        />
-        
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
-        
-        {/* Content */}
-        <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-          <motion.span
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-xs uppercase tracking-[0.2em] text-primary mb-2"
-          >
-            {project.category}
-          </motion.span>
-          <h3 className="text-xl md:text-2xl font-serif text-cream group-hover:text-primary transition-colors duration-300">
-            {project.title}
-          </h3>
+    <Link to={`/projeto/${project.slug}`}>
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        transition={{ duration: 0.6, delay: index * 0.1 }}
+        className={`group relative overflow-hidden cursor-pointer ${
+          project.size === "large"
+            ? "md:col-span-2 md:row-span-2"
+            : project.size === "tall"
+            ? "md:row-span-2"
+            : ""
+        }`}
+      >
+        <div className="relative h-full min-h-[300px] md:min-h-[400px] overflow-hidden">
+          <img
+            src={project.images[0]}
+            alt={project.title}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
           
-          {/* Hover Line */}
-          <div className="mt-4 w-0 h-[1px] bg-primary group-hover:w-16 transition-all duration-500" />
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+          
+          {/* Content */}
+          <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+            <motion.span
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-xs uppercase tracking-[0.2em] text-primary mb-2"
+            >
+              {project.category}
+            </motion.span>
+            <h3 className="text-xl md:text-2xl font-serif text-cream group-hover:text-primary transition-colors duration-300">
+              {project.title}
+            </h3>
+            
+            {/* Hover Arrow */}
+            <div className="mt-4 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <span className="text-sm text-primary">Ver Projeto</span>
+              <ArrowRight className="w-4 h-4 text-primary" />
+            </div>
+          </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </Link>
   );
 }
 
