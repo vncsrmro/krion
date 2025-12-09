@@ -1,5 +1,9 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import craftsmanWorking from "@/assets/craftsman-working.jpg";
+import carpentryTools from "@/assets/carpentry-tools.jpg";
+import woodJoinery from "@/assets/wood-joinery.jpg";
+import customFurniture from "@/assets/custom-furniture.jpg";
 
 export function AboutSection() {
   const ref = useRef(null);
@@ -21,15 +25,15 @@ export function AboutSection() {
               <div className="space-y-4">
                 <div className="aspect-[3/4] bg-charcoal-light overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=800&fit=crop"
+                    src={craftsmanWorking}
                     alt="Artesão trabalhando em detalhe de madeira"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
                 <div className="aspect-square bg-charcoal-light overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1572297794908-f2ee5a2930d9?w=400&h=400&fit=crop"
-                    alt="Marceneiro trabalhando com madeira"
+                    src={woodJoinery}
+                    alt="Encaixe de madeira artesanal"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
@@ -37,14 +41,14 @@ export function AboutSection() {
               <div className="pt-8 space-y-4">
                 <div className="aspect-square bg-charcoal-light overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&h=400&fit=crop"
+                    src={carpentryTools}
                     alt="Ferramentas de marcenaria"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
                 <div className="aspect-[3/4] bg-charcoal-light overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=600&h=800&fit=crop"
+                    src={customFurniture}
                     alt="Móvel de madeira artesanal"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
