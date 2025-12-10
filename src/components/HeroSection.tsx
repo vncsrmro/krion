@@ -28,7 +28,7 @@ export function HeroSection() {
     >
       {/* Background with Parallax */}
       <motion.div
-        style={{ y }}
+        style={{ y: isMobile ? 0 : y }}
         className="absolute inset-0 -z-10 will-change-transform"
       >
         <img
@@ -50,12 +50,7 @@ export function HeroSection() {
         style={{ opacity }}
         className="container mx-auto px-6 text-center relative z-10"
       >
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="max-w-4xl mx-auto"
-        >
+        <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
@@ -69,28 +64,20 @@ export function HeroSection() {
             A Arte do Mobiliário de Alto Padrão
           </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-lg md:text-xl text-cream-muted font-light max-w-2xl mx-auto mb-12 leading-relaxed"
-          >
+          <p className="text-lg md:text-xl text-cream-muted font-light max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-up delay-100">
             Projetos exclusivos que unem design sofisticado, materiais nobres
             e a precisão da marcenaria artesanal.
-          </motion.p>
+          </p>
 
           <motion.a
             href="#portfolio"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="inline-block px-10 py-4 bg-gradient-gold text-primary-foreground font-medium tracking-wide transition-all duration-300 hover:shadow-[0_8px_30px_hsl(var(--gold)/0.3)]"
+            className="inline-block px-10 py-4 bg-gradient-gold text-primary-foreground font-medium tracking-wide transition-all duration-300 hover:shadow-[0_8px_30px_hsl(var(--gold)/0.3)] animate-fade-up delay-200"
           >
             Descubra a Exclusividade Krion
           </motion.a>
-        </motion.div>
+        </div>
       </motion.div>
 
       {/* Scroll Indicator */}
@@ -103,7 +90,7 @@ export function HeroSection() {
         }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.8 }}
+        transition={{ delay: 1, duration: 0.8 }}
         whileHover={{ scale: 1.1 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer"
         aria-label="Rolar para próxima seção"
