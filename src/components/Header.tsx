@@ -27,6 +27,18 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (isHomePage) {
+      e.preventDefault();
+      const inicioElement = document.getElementById("inicio");
+      if (inicioElement) {
+        inicioElement.scrollIntoView({ behavior: "smooth" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <motion.header
       initial={{ y: -100 }}
@@ -40,7 +52,11 @@ export function Header() {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="/#inicio" className="relative z-10">
+          <a
+            href="/#inicio"
+            className="relative z-10"
+            onClick={handleLogoClick}
+          >
             <img
               src={krionLogo}
               alt="Krion Marcenaria"
