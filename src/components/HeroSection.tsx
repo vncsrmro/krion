@@ -35,7 +35,11 @@ export function HeroSection() {
           src={heroImage}
           alt="Cozinha de luxo Krion Marcenaria"
           className="w-full h-[120%] object-cover"
+          width={1920}
+          height={1280}
           loading="eager"
+          fetchPriority="high"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/40 to-background" />
         <div className="absolute inset-0 bg-background/10" />

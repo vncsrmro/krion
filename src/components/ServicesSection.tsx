@@ -117,6 +117,10 @@ export function ServicesSection() {
                 src={workshopCnc}
                 alt="Oficina de marcenaria com maquinário CNC"
                 className="w-full h-full object-cover"
+                width={800}
+                height={600}
+                loading="lazy"
+                decoding="async"
               />
             </div>
             {/* Overlay Badge */}

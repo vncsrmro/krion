@@ -20,6 +20,9 @@ export function Footer() {
               src={krionLogo}
               alt="Krion Marcenaria"
               className="h-10 w-auto mb-6"
+              width={100}
+              height={40}
+              loading="lazy"
             />
             <p className="text-cream-muted text-sm leading-relaxed max-w-xs">
               Transformando espaços em experiências de luxo há mais de uma década.
@@ -50,7 +53,7 @@ export function Footer() {
               <p>Santa Catarina, Americana - SP</p>
               <p>+55 (19) 99470-4048</p>
             </div>
-            
+
             {/* Social Icons */}
             <div className="flex gap-4">
               <a

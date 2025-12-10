@@ -67,6 +67,10 @@ export function AboutSection() {
                     src={craftsmanWorking}
                     alt="Artesão trabalhando em detalhe de madeira"
                     className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-500 will-change-transform"
+                    width={400}
+                    height={533}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div className="aspect-square bg-charcoal-light overflow-hidden">
@@ -74,6 +78,10 @@ export function AboutSection() {
                     src={woodJoinery}
                     alt="Encaixe de madeira artesanal"
                     className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-500 will-change-transform"
+                    width={400}
+                    height={400}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
@@ -83,6 +91,10 @@ export function AboutSection() {
                     src={carpentryTools}
                     alt="Ferramentas de marcenaria"
                     className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-500 will-change-transform"
+                    width={400}
+                    height={400}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div className="aspect-[3/4] bg-charcoal-light overflow-hidden">
@@ -90,6 +102,10 @@ export function AboutSection() {
                     src={customFurniture}
                     alt="Móvel de madeira artesanal"
                     className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-500 will-change-transform"
+                    width={400}
+                    height={533}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>

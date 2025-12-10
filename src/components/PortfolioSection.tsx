@@ -42,6 +42,10 @@ function PortfolioCard({ project, index }: { project: typeof projects[0]; index:
             src={project.images[0]}
             alt={project.title}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03] will-change-transform"
+            width={600}
+            height={450}
+            loading="lazy"
+            decoding="async"
           />
 
           {/* Overlay */}

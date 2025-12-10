@@ -61,6 +61,8 @@ export function Header() {
               src={krionLogo}
               alt="Krion Marcenaria"
               className="h-10 md:h-12 w-auto"
+              width={120}
+              height={48}
             />
           </a>
 

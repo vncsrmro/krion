@@ -129,6 +129,10 @@ export function MaterialsSection() {
                 src={woodSamples}
                 alt="Amostras de madeiras nobres e acabamentos"
                 className="w-full h-full object-cover"
+                width={600}
+                height={800}
+                loading="lazy"
+                decoding="async"
               />
             </div>
 
