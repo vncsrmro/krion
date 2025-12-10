@@ -1,10 +1,24 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
 import heroImage from "@/assets/hero-kitchen.jpg";
 
 export function HeroSection() {
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 500], [0, 150]);
+  const prefersReducedMotion = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Disable parallax on mobile or if user prefers reduced motion
+  const shouldDisableParallax = isMobile || prefersReducedMotion;
+
+  const y = useTransform(scrollY, [0, 500], [0, shouldDisableParallax ? 0 : 100]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   return (
@@ -15,12 +29,13 @@ export function HeroSection() {
       {/* Background with Parallax */}
       <motion.div
         style={{ y }}
-        className="absolute inset-0 -z-10"
+        className="absolute inset-0 -z-10 will-change-transform"
       >
         <img
           src={heroImage}
           alt="Cozinha de luxo Krion Marcenaria"
           className="w-full h-[120%] object-cover"
+          loading="eager"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/40 to-background" />
         <div className="absolute inset-0 bg-background/10" />
@@ -43,23 +58,23 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="w-20 h-[1px] bg-primary mx-auto mb-8"
           />
-          
+
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-serif text-cream leading-tight mb-6">
             <span className="text-gradient-gold">Krion Marcenaria:</span>
             <br />
             A Arte do Mobiliário de Alto Padrão
           </h1>
-          
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-lg md:text-xl text-cream-muted font-light max-w-2xl mx-auto mb-12 leading-relaxed"
           >
-            Projetos exclusivos que unem design sofisticado, materiais nobres 
+            Projetos exclusivos que unem design sofisticado, materiais nobres
             e a precisão da marcenaria artesanal.
           </motion.p>
-          
+
           <motion.a
             href="#portfolio"
             initial={{ opacity: 0, y: 20 }}

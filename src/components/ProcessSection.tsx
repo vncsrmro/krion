@@ -3,12 +3,11 @@ import { useRef } from "react";
 import { MessageSquare, PenTool, CheckCircle, Hammer, Sparkles, Truck } from "lucide-react";
 
 const stepVariants = {
-  hidden: { opacity: 0, y: 50, filter: "blur(6px)" },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    filter: "blur(0px)",
-    transition: { duration: 0.6 }
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 }
   }
 };
 

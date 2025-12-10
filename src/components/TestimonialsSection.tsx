@@ -4,34 +4,30 @@ import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
 const testimonialVariants = {
   enter: (direction: number) => ({
-    x: direction > 0 ? 60 : -60,
+    x: direction > 0 ? 50 : -50,
     opacity: 0,
-    scale: 0.95,
-    filter: "blur(4px)"
+    scale: 0.98
   }),
   center: {
     x: 0,
     opacity: 1,
     scale: 1,
-    filter: "blur(0px)",
-    transition: { duration: 0.5 }
+    transition: { duration: 0.4 }
   },
   exit: (direction: number) => ({
-    x: direction < 0 ? 60 : -60,
+    x: direction < 0 ? 50 : -50,
     opacity: 0,
-    scale: 0.95,
-    filter: "blur(4px)",
-    transition: { duration: 0.4 }
+    scale: 0.98,
+    transition: { duration: 0.3 }
   })
 };
 
 const headerVariants = {
-  hidden: { opacity: 0, y: 40, filter: "blur(6px)" },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    filter: "blur(0px)",
-    transition: { duration: 0.8 }
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6 }
   }
 };
 
@@ -105,12 +101,12 @@ export function TestimonialsSection() {
             >
               {/* Quote Icon */}
               <Quote className="w-12 h-12 text-primary/30 mx-auto mb-8" />
-              
+
               {/* Content */}
               <p className="text-xl md:text-2xl text-cream font-light leading-relaxed mb-10 italic">
                 "{testimonials[currentIndex].content}"
               </p>
-              
+
               {/* Author */}
               <div>
                 <p className="text-lg font-serif text-primary">
@@ -134,23 +130,22 @@ export function TestimonialsSection() {
             >
               <ChevronLeft className="w-5 h-5" />
             </motion.button>
-            
+
             {/* Dots */}
             <div className="flex gap-2">
               {testimonials.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToIndex(index)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    index === currentIndex
+                  className={`h-2 rounded-full transition-all duration-300 ${index === currentIndex
                       ? "bg-primary w-8"
                       : "bg-cream-muted/30 hover:bg-cream-muted/50 w-2"
-                  }`}
+                    }`}
                   aria-label={`Ir para depoimento ${index + 1}`}
                 />
               ))}
             </div>
-            
+
             <motion.button
               onClick={() => paginate(1)}
               whileHover={{ scale: 1.05 }}

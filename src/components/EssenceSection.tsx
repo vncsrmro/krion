@@ -3,12 +3,11 @@ import { useRef } from "react";
 import { Palette, Diamond, Hammer, Shield } from "lucide-react";
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 50, filter: "blur(8px)" },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    filter: "blur(0px)",
-    transition: { duration: 0.7 }
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 }
   }
 };
 
@@ -24,12 +23,11 @@ const containerVariants = {
 };
 
 const headerVariants = {
-  hidden: { opacity: 0, y: 40, filter: "blur(6px)" },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    filter: "blur(0px)",
-    transition: { duration: 0.8 }
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6 }
   }
 };
 
@@ -91,7 +89,7 @@ export function EssenceSection() {
     <section id="essencia" className="py-24 md:py-32 bg-background relative overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none" />
-      
+
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
         <motion.div
@@ -111,7 +109,7 @@ export function EssenceSection() {
         </motion.div>
 
         {/* Pillars Grid */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 max-w-4xl mx-auto"
           variants={containerVariants}
           initial="hidden"

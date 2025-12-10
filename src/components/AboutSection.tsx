@@ -6,30 +6,28 @@ import carpentryTools from "@/assets/carpentry-tools.jpg";
 import customFurniture from "@/assets/custom-furniture.jpg";
 
 const slideLeftVariants = {
-  hidden: { opacity: 0, x: -60, filter: "blur(8px)" },
-  visible: { 
-    opacity: 1, 
-    x: 0, 
-    filter: "blur(0px)",
-    transition: { duration: 0.8 }
+  hidden: { opacity: 0, x: -40 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6 }
   }
 };
 
 const slideRightVariants = {
-  hidden: { opacity: 0, x: 60, filter: "blur(8px)" },
-  visible: { 
-    opacity: 1, 
-    x: 0, 
-    filter: "blur(0px)",
-    transition: { duration: 0.8, delay: 0.2 }
+  hidden: { opacity: 0, x: 40 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6 }
   }
 };
 
 const statVariant = {
   hidden: { opacity: 0, y: 30, scale: 0.9 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
+  visible: {
+    opacity: 1,
+    y: 0,
     scale: 1,
     transition: { duration: 0.5 }
   }
@@ -68,14 +66,14 @@ export function AboutSection() {
                   <img
                     src={craftsmanWorking}
                     alt="Artesão trabalhando em detalhe de madeira"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-500 will-change-transform"
                   />
                 </div>
                 <div className="aspect-square bg-charcoal-light overflow-hidden">
                   <img
                     src={woodJoinery}
                     alt="Encaixe de madeira artesanal"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-500 will-change-transform"
                   />
                 </div>
               </div>
@@ -84,14 +82,14 @@ export function AboutSection() {
                   <img
                     src={carpentryTools}
                     alt="Ferramentas de marcenaria"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-500 will-change-transform"
                   />
                 </div>
                 <div className="aspect-[3/4] bg-charcoal-light overflow-hidden">
                   <img
                     src={customFurniture}
                     alt="Móvel de madeira artesanal"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-500 will-change-transform"
                   />
                 </div>
               </div>
@@ -111,7 +109,7 @@ export function AboutSection() {
             <h2 className="text-3xl md:text-5xl font-serif text-cream mb-6">
               Sobre a <span className="text-gradient-gold">Krion</span>
             </h2>
-            
+
             <p className="text-cream-muted leading-relaxed mb-6">
               Fundada em Santa Bárbara D'Oeste, a Krion Marcenaria nasceu da paixão pela
               arte da marcenaria e do compromisso inabalável com a excelência. Com mais de
@@ -127,7 +125,7 @@ export function AboutSection() {
             </p>
 
             {/* Quote */}
-            <motion.div 
+            <motion.div
               className="border-l-2 border-primary pl-6 py-2"
               initial={{ opacity: 0, x: 20 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
@@ -143,7 +141,7 @@ export function AboutSection() {
             </motion.div>
 
             {/* Stats */}
-            <motion.div 
+            <motion.div
               className="grid grid-cols-3 gap-6 mt-10 pt-10 border-t border-cream/10"
               variants={staggerStats}
               initial="hidden"

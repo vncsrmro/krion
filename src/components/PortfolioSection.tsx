@@ -5,12 +5,11 @@ import { ArrowRight } from "lucide-react";
 import { projects } from "@/data/projects";
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 60, filter: "blur(8px)" },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    filter: "blur(0px)",
-    transition: { duration: 0.7 }
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 }
   }
 };
 
@@ -42,15 +41,15 @@ function PortfolioCard({ project, index }: { project: typeof projects[0]; index:
           <img
             src={project.images[0]}
             alt={project.title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03] will-change-transform"
           />
-          
+
           {/* Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500" />
-          
+
           {/* Hover border */}
           <div className="absolute inset-0 border-2 border-transparent group-hover:border-primary/50 transition-colors duration-500" />
-          
+
           {/* Content */}
           <div className="absolute inset-0 flex flex-col justify-end p-6">
             <span className="text-xs uppercase tracking-[0.2em] text-primary mb-2">
@@ -59,7 +58,7 @@ function PortfolioCard({ project, index }: { project: typeof projects[0]; index:
             <h3 className="text-lg md:text-xl font-serif text-cream group-hover:text-primary transition-colors duration-300">
               {project.title}
             </h3>
-            
+
             {/* Hover Arrow */}
             <div className="mt-3 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
               <span className="text-sm text-primary">Ver Projeto</span>
@@ -92,7 +91,7 @@ export function PortfolioSection() {
             Projetos que Definem o <span className="text-gradient-gold">Luxo</span>
           </h2>
           <p className="text-cream-muted max-w-2xl mx-auto">
-            Cada projeto é uma obra única, criada para transformar espaços em 
+            Cada projeto é uma obra única, criada para transformar espaços em
             experiências de sofisticação e conforto.
           </p>
         </motion.div>

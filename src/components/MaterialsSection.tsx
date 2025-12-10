@@ -1,25 +1,23 @@
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion, useInView, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 import { Leaf, Award, Shield } from "lucide-react";
 import woodSamples from "@/assets/wood-samples.jpg";
 
 const slideLeftVariants = {
-  hidden: { opacity: 0, x: -60, filter: "blur(8px)" },
-  visible: { 
-    opacity: 1, 
-    x: 0, 
-    filter: "blur(0px)",
-    transition: { duration: 0.8 }
+  hidden: { opacity: 0, x: -40 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6 }
   }
 };
 
 const materialVariants = {
-  hidden: { opacity: 0, y: 25, filter: "blur(4px)" },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    filter: "blur(0px)",
-    transition: { duration: 0.5 }
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4 }
   }
 };
 
@@ -56,13 +54,23 @@ export function MaterialsSection() {
   const ref = useRef(null);
   const containerRef = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
+  const prefersReducedMotion = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
   });
-  
-  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
+
+  const shouldDisableParallax = isMobile || prefersReducedMotion;
+  const y = useTransform(scrollYProgress, [0, 1], shouldDisableParallax ? [0, 0] : [30, -30]);
 
   return (
     <section ref={containerRef} className="py-24 md:py-32 bg-charcoal-light relative overflow-hidden">
@@ -114,7 +122,7 @@ export function MaterialsSection() {
           {/* Image with Parallax */}
           <motion.div
             style={{ y }}
-            className="relative"
+            className="relative will-change-transform"
           >
             <div className="aspect-[3/4] overflow-hidden">
               <img
@@ -123,7 +131,7 @@ export function MaterialsSection() {
                 className="w-full h-full object-cover"
               />
             </div>
-            
+
             {/* Floating Badge */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}

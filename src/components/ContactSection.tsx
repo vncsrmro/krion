@@ -3,39 +3,36 @@ import { useRef, useState } from "react";
 import { MapPin, Phone, Mail, MessageCircle, Send } from "lucide-react";
 
 const fadeUpVariants = {
-  hidden: { opacity: 0, y: 40, filter: "blur(6px)" },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    filter: "blur(0px)",
-    transition: { duration: 0.7 }
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 }
   }
 };
 
 const slideLeftVariants = {
-  hidden: { opacity: 0, x: -50, filter: "blur(6px)" },
-  visible: { 
-    opacity: 1, 
-    x: 0, 
-    filter: "blur(0px)",
-    transition: { duration: 0.8, delay: 0.2 }
+  hidden: { opacity: 0, x: -40 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6 }
   }
 };
 
 const slideRightVariants = {
-  hidden: { opacity: 0, x: 50, filter: "blur(6px)" },
-  visible: { 
-    opacity: 1, 
-    x: 0, 
-    filter: "blur(0px)",
-    transition: { duration: 0.8, delay: 0.3 }
+  hidden: { opacity: 0, x: 40 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6 }
   }
 };
 
 const formFieldVariants = {
   hidden: { opacity: 0, x: -20 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     x: 0,
     transition: { duration: 0.4 }
   }
@@ -55,7 +52,7 @@ const formContainerVariants = {
 export function ContactSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -65,7 +62,7 @@ export function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Format message for WhatsApp
     const whatsappMessage = encodeURIComponent(
       `Olá! Meu nome é ${formData.name}.\n\n` +
@@ -73,7 +70,7 @@ export function ContactSection() {
       `Telefone: ${formData.phone}\n\n` +
       `Detalhes do Projeto:\n${formData.message}`
     );
-    
+
     // Open WhatsApp with pre-filled message
     window.open(`https://wa.me/5519994704048?text=${whatsappMessage}`, "_blank");
   };
@@ -101,7 +98,7 @@ export function ContactSection() {
             Realize Seu Projeto dos <span className="text-gradient-gold">Sonhos</span>
           </h2>
           <p className="text-cream-muted max-w-2xl mx-auto">
-            Sua jornada para um ambiente exclusivo começa aqui. 
+            Sua jornada para um ambiente exclusivo começa aqui.
             Agende uma consultoria com nossos especialistas.
           </p>
         </motion.div>
@@ -116,10 +113,10 @@ export function ContactSection() {
           >
             <div>
               <p className="text-cream-muted mb-8 leading-relaxed">
-                Estamos prontos para transformar seu espaço em uma obra de arte. 
+                Estamos prontos para transformar seu espaço em uma obra de arte.
                 Entre em contato e descubra como podemos criar algo único para você.
               </p>
-              
+
               {/* WhatsApp CTA */}
               <motion.a
                 href="https://wa.me/5519994704048?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20projetos%20da%20Krion%20Marcenaria."
@@ -184,8 +181,8 @@ export function ContactSection() {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            <motion.form 
-              onSubmit={handleSubmit} 
+            <motion.form
+              onSubmit={handleSubmit}
               className="space-y-6"
               variants={formContainerVariants}
               initial="hidden"
@@ -207,7 +204,7 @@ export function ContactSection() {
                   placeholder="Seu nome"
                 />
               </motion.div>
-              
+
               <motion.div variants={formFieldVariants}>
                 <label htmlFor="email" className="block text-sm text-cream-muted mb-2">
                   Email
@@ -223,7 +220,7 @@ export function ContactSection() {
                   placeholder="seu@email.com"
                 />
               </motion.div>
-              
+
               <motion.div variants={formFieldVariants}>
                 <label htmlFor="phone" className="block text-sm text-cream-muted mb-2">
                   Telefone / WhatsApp
@@ -239,7 +236,7 @@ export function ContactSection() {
                   placeholder="(00) 00000-0000"
                 />
               </motion.div>
-              
+
               <motion.div variants={formFieldVariants}>
                 <label htmlFor="message" className="block text-sm text-cream-muted mb-2">
                   Detalhes do Projeto
@@ -255,7 +252,7 @@ export function ContactSection() {
                   placeholder="Conte-nos sobre seu projeto..."
                 />
               </motion.div>
-              
+
               <motion.button
                 type="submit"
                 variants={formFieldVariants}
