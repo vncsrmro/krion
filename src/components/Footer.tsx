@@ -76,12 +76,25 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="mt-16 pt-8 border-t border-border flex flex-col items-center gap-4">
+          <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-cream-muted text-xs">
+              © 2025 Krion Marcenaria. Todos os direitos reservados.
+            </p>
+            <p className="text-cream-muted text-xs">
+              Design de luxo para ambientes exclusivos
+            </p>
+          </div>
           <p className="text-cream-muted text-xs">
-            © 2025 Krion Marcenaria. Todos os direitos reservados.
-          </p>
-          <p className="text-cream-muted text-xs">
-            Design de luxo para ambientes exclusivos
+            Desenvolvido com 💗 pela{" "}
+            <a
+              href="https://inovasys.digital"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:text-cream transition-colors duration-300"
+            >
+              InovaSys
+            </a>
           </p>
         </div>
       </div>
