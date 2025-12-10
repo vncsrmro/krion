@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import krionLogo from "@/assets/krion-logo.svg";
 
 const navLinks = [
@@ -32,22 +32,21 @@ export function Header() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? "bg-background/95 backdrop-blur-md shadow-lg shadow-background/20"
-          : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+        ? "bg-background/95 backdrop-blur-md shadow-lg shadow-background/20"
+        : "bg-transparent"
+        }`}
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="relative z-10">
+          <a href="/#inicio" className="relative z-10">
             <img
               src={krionLogo}
               alt="Krion Marcenaria"
               className="h-10 md:h-12 w-auto"
             />
-          </Link>
+          </a>
 
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
